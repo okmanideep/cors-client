@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CORS Client</title>
+</head>
+<body>
+	<h1>CORS Client</h1>
+	<p>Click the button to make a request to the server.</p>
+	<button id="btn">Get Message</button>
+	<p id="message"></p>
+	<script>
+		var btn = document.getElementById('btn');
+		btn.addEventListener('click', async function() {
+			const response = await fetch('http://server.localhost.com:8181/message', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				credentials: 'include',
+			})
+			const data = await response.json();
+			document.getElementById('message').innerHTML = data.message;
+		});
+	</script>
+
+</body>
+</html>
